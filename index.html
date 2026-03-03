@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snow Rider 3D Turbo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .game-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 100vh;
+            max-height: 900px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #87ceeb 0%, #e0f6ff 100%);
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        #score, #speed {
+            display: inline-block;
+            margin-right: 50px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        #gameOver, #startScreen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            color: white;
+            font-size: 28px;
+            z-index: 100;
+            display: none;
+        }
+
+        #gameOver h1, #startScreen h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+        }
+
+        #gameOver p, #startScreen p {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+
+        .button {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background: #3db8b0;
+        }
+
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 14px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            #gameOver, #startScreen {
+                padding: 20px;
+            }
+
+            #gameOver h1, #startScreen h1 {
+                font-size: 32px;
+            }
+
+            #gameOver p, #startScreen p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas"></canvas>
+        
+        <div id="ui">
+            <div id="score">Score: 0</div>
+            <div id="speed">Speed: 0 km/h</div>
+        </div>
+
+        <div id="startScreen">
+            <h1>❄️ SNOW RIDER 3D TURBO ❄️</h1>
+            <p>Ride down the mountain!</p>
+            <p style="font-size: 16px; color: #aaa;">Avoid obstacles and don't fall off!</p>
+            <button class="button" onclick="startGame()">START GAME</button>
+        </div>
+
+        <div id="gameOver">
+            <h1>GAME OVER!</h1>
+            <p id="finalScore">Score: 0</p>
+            <p id="finalSpeed">Max Speed: 0 km/h</p>
+            <button class="button" onclick="location.reload()">PLAY AGAIN</button>
+        </div>
+
+        <div id="controls">
+            <p>← LEFT / RIGHT → &nbsp; or &nbsp; A/D &nbsp; or &nbsp; MOUSE/TOUCH</p>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
